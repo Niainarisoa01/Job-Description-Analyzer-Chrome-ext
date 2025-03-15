@@ -1,77 +1,105 @@
-# Job Description Analyzer Chrome Extension
+# Job Description Analyzer - Extension Chrome
 
-A Chrome extension that uses AI to analyze job descriptions, extract key skills, and provide insights to job seekers.
+Une extension Chrome qui utilise l'IA pour analyser les descriptions de poste, extraire les compétences clés et fournir des informations précieuses aux chercheurs d'emploi.
 
-## Features
+![Job Description Analyzer](https://img.shields.io/badge/Chrome%20Extension-v1.0.0-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue)
+![Gemini AI](https://img.shields.io/badge/Gemini%20AI-Powered-green)
 
-- **Job Description Analysis**: Extract and analyze job descriptions from any webpage
-- **Skill Identification**: Automatically identify technical skills, soft skills, and qualifications
-- **Floating Panel UI**: View analysis results in a draggable, collapsible panel
-- **Keyword Highlighting**: Highlight important keywords directly in the job posting
-- **User Authentication**: Sign up and log in to save your analysis history
-- **Premium Features**: Access advanced insights with a premium subscription
+## 🌟 Fonctionnalités
 
-## Technologies Used
+* **Analyse de descriptions de poste** : Extrait et analyse les descriptions de poste de n'importe quelle page web
+* **Identification des compétences** : Identifie automatiquement les compétences techniques, les soft skills et les qualifications
+* **Interface utilisateur flottante** : Visualisez les résultats d'analyse dans un panneau déplaçable et rétractable
+* **Mise en évidence des mots-clés** : Surligne les mots-clés importants directement dans l'offre d'emploi
+* **Authentification utilisateur** : Inscrivez-vous et connectez-vous pour sauvegarder votre historique d'analyses
+* **Fonctionnalités Premium** : 
+  * Estimation de la fourchette salariale
+  * Analyse avancée des compétences
+  * Mise en évidence personnalisée des mots-clés
+  * Analyses de postes illimitées
+  * Support prioritaire
 
-- **TypeScript**: For type-safe code
-- **Chrome Extension API**: For browser integration
-- **Google Gemini AI**: For natural language processing and job analysis
-- **Supabase**: For user authentication and data storage
-- **Stripe**: For payment processing
-- **Bootstrap**: For UI components
+## 🛠️ Technologies utilisées
 
-## Installation for Development
+* **TypeScript** : Pour un code typé et sécurisé
+* **API Chrome Extension** : Pour l'intégration au navigateur
+* **Google Gemini AI** : Pour le traitement du langage naturel et l'analyse des offres d'emploi
+* **Supabase** : Pour l'authentification des utilisateurs et le stockage des données
+* **Stripe** (simulation) : Pour le traitement des paiements
+* **Bootstrap** : Pour les composants d'interface utilisateur
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/job-description-analyzer.git
-   cd job-description-analyzer
-   ```
+## 📋 Prérequis
 
-2. Install dependencies:
-   ```
-   npm install
-   ```
+* Node.js (v14 ou supérieur)
+* npm ou yarn
+* Google Chrome
 
-3. Build the extension:
-   ```
-   npm run build
-   ```
+## 🚀 Installation pour le développement
 
-4. Load the extension in Chrome:
-   - Open Chrome and navigate to `chrome://extensions/`
-   - Enable "Developer mode"
-   - Click "Load unpacked" and select the `dist` folder
+1. Clonez le dépôt :
+```bash
+git clone https://github.com/Niainarisoa01/Job-Description-Analyzer-Chrome-ext.git
+cd Job-Description-Analyzer-Chrome-ext
+```
 
-## Configuration
+2. Installez les dépendances :
+```bash
+npm install
+```
 
-Before using the extension, you need to set up the following:
+3. Construisez l'extension :
+```bash
+npm run build
+```
 
-1. **Gemini API Key**: Get an API key from [Google AI Studio](https://ai.google.dev/)
-2. **Supabase Project**: Create a project on [Supabase](https://supabase.com/) and get your URL and anon key
-3. **Stripe Account**: Set up a [Stripe](https://stripe.com/) account for payment processing
+4. Chargez l'extension dans Chrome :
+   * Ouvrez Chrome et naviguez vers `chrome://extensions/`
+   * Activez le "Mode développeur"
+   * Cliquez sur "Charger l'extension non empaquetée" et sélectionnez le dossier `dist`
 
-Add these keys to the extension's options page after installation.
+## ⚙️ Configuration
 
-## Development
+Avant d'utiliser l'extension, vous devez configurer les éléments suivants :
 
-- Run the development build with file watching:
-  ```
-  npm run watch
-  ```
+1. **Clé API Gemini** : Obtenez une clé API depuis [Google AI Studio](https://ai.google.dev/)
+2. **Projet Supabase** : Créez un projet sur [Supabase](https://supabase.com/) et obtenez votre URL et clé anonyme
+3. **Configuration de l'extension** : Ajoutez ces clés dans la page des paramètres de l'extension après l'installation
 
-- The extension uses a modular architecture:
-  - `background/`: Background service worker
-  - `content/`: Content scripts for webpage interaction
-  - `popup/`: Extension popup UI
-  - `api/`: API service integrations
-  - `utils/`: Utility functions and types
-  - `components/`: Reusable UI components
+## 💻 Développement
 
-## Contributing
+* Lancez la construction en mode développement avec surveillance des fichiers :
+```bash
+npm run watch
+```
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+* L'extension utilise une architecture modulaire :
+  * `background/` : Service worker en arrière-plan
+  * `content/` : Scripts de contenu pour l'interaction avec les pages web
+  * `popup/` : Interface utilisateur popup de l'extension
+  * `api/` : Intégrations de services API
+  * `utils/` : Fonctions utilitaires et types
+  * `components/` : Composants d'interface utilisateur réutilisables
 
-## License
+## 🔒 Gestion des abonnements Premium
 
-This project is licensed under the ISC License - see the LICENSE file for details. 
+L'extension propose un système d'abonnement Premium simulé :
+
+1. Les utilisateurs peuvent s'inscrire et se connecter via Supabase
+2. L'option "Upgrade to Premium" ouvre une page de paiement simulée
+3. Après "paiement", l'utilisateur obtient accès aux fonctionnalités premium
+4. Les abonnements peuvent être gérés dans la section "Manage Subscription"
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à soumettre une Pull Request.
+
+## 📝 Licence
+
+Ce projet est sous licence ISC - voir le fichier LICENSE pour plus de détails.
+
+## 📧 Contact
+
+Niaina - [GitHub](https://github.com/Niainarisoa01)
+
+Lien du projet : [https://github.com/Niainarisoa01/Job-Description-Analyzer-Chrome-ext](https://github.com/Niainarisoa01/Job-Description-Analyzer-Chrome-ext) 
