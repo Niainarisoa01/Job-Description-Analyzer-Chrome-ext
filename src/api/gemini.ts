@@ -114,7 +114,9 @@ class GeminiService {
         5. Company culture insights based on language and requirements
         6. Potential red flags or warning signs in the job description
         7. Salary range estimate based on responsibilities and requirements
-        8. Career growth potential based on the role description
+        8. Advanced skills analysis with core skills vs nice-to-have skills
+        9. Emerging trends in the industry related to this role
+        10. Skill gap suggestions for candidates
         
         Add these additional categories to the keywordCategories array:
         {
@@ -124,13 +126,16 @@ class GeminiService {
         {
           "name": "Potential Red Flags",
           "keywords": ["flag1", "flag2", ...]
-        },
-        {
-          "name": "Career Growth",
-          "keywords": ["growth1", "growth2", ...]
         }
         
-        Also add a "salaryEstimate" field to the root of the JSON object with a string value.
+        Also add these fields to the root of the JSON object:
+        "salaryEstimate": "A detailed salary range estimate with justification based on the job requirements, location (if mentioned), and industry standards. Include both annual and hourly estimates if applicable.",
+        "advancedSkillsAnalysis": {
+          "coreSkills": ["core1", "core2", ...],
+          "niceToHaveSkills": ["nice1", "nice2", ...],
+          "emergingTrends": ["trend1", "trend2", ...],
+          "skillGapSuggestions": ["suggestion1", "suggestion2", ...]
+        }
       `;
     }
 
@@ -198,11 +203,28 @@ class GeminiService {
       
       const analysisData = JSON.parse(jsonMatch[0]);
       
-      return {
+      // Construire l'objet JobAnalysis avec les données de base
+      const jobAnalysis: JobAnalysis = {
         summary: analysisData.summary || 'No summary available',
         keywordCategories: analysisData.keywordCategories || [],
         timestamp: Date.now(),
       };
+      
+      // Ajouter les fonctionnalités premium si elles sont présentes
+      if (analysisData.salaryEstimate) {
+        jobAnalysis.salaryEstimate = analysisData.salaryEstimate;
+      }
+      
+      if (analysisData.advancedSkillsAnalysis) {
+        jobAnalysis.advancedSkillsAnalysis = {
+          coreSkills: analysisData.advancedSkillsAnalysis.coreSkills || [],
+          niceToHaveSkills: analysisData.advancedSkillsAnalysis.niceToHaveSkills || [],
+          emergingTrends: analysisData.advancedSkillsAnalysis.emergingTrends || [],
+          skillGapSuggestions: analysisData.advancedSkillsAnalysis.skillGapSuggestions || []
+        };
+      }
+      
+      return jobAnalysis;
     } catch (error) {
       console.error('Error parsing Gemini response:', error);
       throw new Error('Failed to parse AI response. Please try again.');

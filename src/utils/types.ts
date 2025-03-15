@@ -19,11 +19,20 @@ export interface JobAnalysis {
   summary: string;
   keywordCategories: KeywordCategory[];
   timestamp: number;
+  salaryEstimate?: string;
+  advancedSkillsAnalysis?: AdvancedSkillsAnalysis;
 }
 
 export interface KeywordCategory {
   name: string;
   keywords: string[];
+}
+
+export interface AdvancedSkillsAnalysis {
+  coreSkills: string[];
+  niceToHaveSkills: string[];
+  emergingTrends: string[];
+  skillGapSuggestions: string[];
 }
 
 // Message types for communication between extension components

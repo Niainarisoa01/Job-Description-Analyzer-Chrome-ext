@@ -498,6 +498,69 @@ function handleAnalysisResults(analysis: any) {
     `;
     resultsContainer.appendChild(salarySection);
   }
+  
+  // Afficher l'analyse avancée des compétences si disponible (premium)
+  if (analysis.advancedSkillsAnalysis) {
+    const advancedSkillsSection = document.createElement('div');
+    advancedSkillsSection.className = 'card mb-3 border-warning';
+    
+    // Créer le contenu pour les compétences essentielles
+    const coreSkillsHtml = analysis.advancedSkillsAnalysis.coreSkills.map((skill: string) => 
+      `<span class="badge bg-success me-2 mb-2">${skill}</span>`
+    ).join('');
+    
+    // Créer le contenu pour les compétences "nice-to-have"
+    const niceToHaveSkillsHtml = analysis.advancedSkillsAnalysis.niceToHaveSkills.map((skill: string) => 
+      `<span class="badge bg-info me-2 mb-2">${skill}</span>`
+    ).join('');
+    
+    // Créer le contenu pour les tendances émergentes
+    const trendsHtml = analysis.advancedSkillsAnalysis.emergingTrends.map((trend: string) => 
+      `<li class="list-group-item">${trend}</li>`
+    ).join('');
+    
+    // Créer le contenu pour les suggestions de compétences à acquérir
+    const suggestionsHtml = analysis.advancedSkillsAnalysis.skillGapSuggestions.map((suggestion: string) => 
+      `<li class="list-group-item">${suggestion}</li>`
+    ).join('');
+    
+    advancedSkillsSection.innerHTML = `
+      <div class="card-header bg-warning">
+        <h5 class="card-title mb-0">Advanced Skills Analysis <span class="badge bg-warning text-dark">PREMIUM</span></h5>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <h6>Core Skills</h6>
+          <div class="d-flex flex-wrap">
+            ${coreSkillsHtml}
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <h6>Nice-to-Have Skills</h6>
+          <div class="d-flex flex-wrap">
+            ${niceToHaveSkillsHtml}
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <h6>Emerging Trends</h6>
+          <ul class="list-group">
+            ${trendsHtml}
+          </ul>
+        </div>
+        
+        <div class="mb-3">
+          <h6>Skill Gap Suggestions</h6>
+          <ul class="list-group">
+            ${suggestionsHtml}
+          </ul>
+        </div>
+      </div>
+    `;
+    
+    resultsContainer.appendChild(advancedSkillsSection);
+  }
 }
 
 // Initialize the popup when the DOM is loaded
