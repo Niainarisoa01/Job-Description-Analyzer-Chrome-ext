@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://*.supabase.co; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+  <title>Job Description Analyzer - Manage Subscription</title>
+  <link href="lib/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .logo img {
+      width: 48px;
+      height: 48px;
+      margin-right: 15px;
+    }
+    .logo h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #4a6cf7;
+    }
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+    .card-header {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #e9ecef;
+      padding: 15px 20px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .subscription-badge {
+      background-color: #4a6cf7;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .subscription-info {
+      margin: 20px 0;
+    }
+    .subscription-info p {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    .subscription-info strong {
+      font-weight: 600;
+      color: #495057;
+    }
+    .btn-cancel {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+    .btn-cancel:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+    }
+    .cancel-success {
+      display: none;
+      text-align: center;
+      padding: 30px;
+    }
+    .cancel-success h2 {
+      color: #dc3545;
+      margin-bottom: 20px;
+    }
+    .cancel-success p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="icons/icon48.png" alt="Logo">
+    <h1>Job Description Analyzer - Manage Subscription</h1>
+  </div>
+
+  <div id="subscription-management">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">Your Subscription</h2>
+        <span class="subscription-badge" id="subscription-status">Premium</span>
+      </div>
+      <div class="card-body">
+        <div class="subscription-info">
+          <p><strong>Plan:</strong> <span id="subscription-plan">Premium Monthly</span></p>
+          <p><strong>Status:</strong> <span id="subscription-active">Active</span></p>
+          <p><strong>Renewal Date:</strong> <span id="subscription-renewal">Loading...</span></p>
+          <p><strong>Price:</strong> <span id="subscription-price">$4.99 / month</span></p>
+        </div>
+        
+        <h4>Premium Features</h4>
+        <ul class="list-group mb-4">
+          <li class="list-group-item">Salary range estimation</li>
+          <li class="list-group-item">Advanced skills analysis</li>
+          <li class="list-group-item">Custom keyword highlighting</li>
+          <li class="list-group-item">Unlimited job analyses</li>
+          <li class="list-group-item">Priority support</li>
+        </ul>
+        
+        <div class="d-grid gap-2">
+          <button id="cancel-subscription-btn" class="btn btn-danger btn-cancel">Cancel Subscription</button>
+        </div>
+        
+        <div class="alert alert-info mt-3">
+          <small>If you cancel, you'll still have access to premium features until the end of your current billing period.</small>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center">
+      <a href="popup.html" class="btn btn-outline-secondary">Return to Extension</a>
+    </div>
+  </div>
+  
+  <div id="cancel-success" class="cancel-success">
+    <h2>Subscription Cancelled</h2>
+    <p>Your subscription has been cancelled. You will continue to have access to premium features until the end of your current billing period.</p>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <a href="popup.html" class="btn btn-outline-secondary">Return to Extension</a>
+    </div>
+  </div>
+
+  <div class="modal fade" id="confirm-cancel-modal" tabindex="-1" aria-labelledby="confirm-cancel-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirm-cancel-label">Confirm Cancellation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to cancel your premium subscription?</p>
+          <p>You'll still have access to premium features until the end of your current billing period.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Keep Subscription</button>
+          <button type="button" class="btn btn-danger" id="confirm-cancel-btn">Yes, Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="lib/bootstrap.bundle.min.js"></script>
+  <script src="manage-subscription.js"></script>
+</body>
+</html> 

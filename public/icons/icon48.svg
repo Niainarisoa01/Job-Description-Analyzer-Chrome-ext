@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="8" fill="#4A6CF7"/>
+  <path d="M10 14H38" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <path d="M10 24H30" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <path d="M10 34H24" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="34" cy="34" r="6" stroke="white" stroke-width="3"/>
+  <path d="M38 38L44 44" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Subtle highlight effect -->
+  <rect x="1" y="1" width="46" height="46" rx="7" stroke="white" stroke-opacity="0.2"/>
+  
+  <!-- Subtle shadow effect -->
+  <rect x="2" y="2" width="44" height="44" rx="6" fill="url(#paint0_linear)" fill-opacity="0.1"/>
+  
+  <defs>
+    <linearGradient id="paint0_linear" x1="24" y1="2" x2="24" y2="46" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white" stop-opacity="0"/>
+      <stop offset="1" stop-color="black" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+</svg> 

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://*.supabase.co; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+  <title>Job Description Analyzer - Premium Upgrade</title>
+  <link href="lib/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .logo img {
+      width: 48px;
+      height: 48px;
+      margin-right: 15px;
+    }
+    .logo h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #4a6cf7;
+    }
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+    .card-header {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #e9ecef;
+      padding: 15px 20px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .price {
+      font-size: 36px;
+      font-weight: 700;
+      color: #4a6cf7;
+      margin-bottom: 10px;
+    }
+    .price-period {
+      font-size: 16px;
+      color: #6c757d;
+    }
+    .feature-list {
+      margin: 20px 0;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .feature-icon {
+      color: #4a6cf7;
+      margin-right: 10px;
+    }
+    .btn-premium {
+      background-color: #4a6cf7;
+      border-color: #4a6cf7;
+      padding: 10px 20px;
+      font-weight: 600;
+    }
+    .btn-premium:hover {
+      background-color: #3a5bd7;
+      border-color: #3a5bd7;
+    }
+    .payment-success {
+      display: none;
+      text-align: center;
+      padding: 30px;
+    }
+    .payment-success h2 {
+      color: #28a745;
+      margin-bottom: 20px;
+    }
+    .payment-success p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="icons/icon48.png" alt="Logo">
+    <h1>Job Description Analyzer - Premium Upgrade</h1>
+  </div>
+
+  <div id="payment-form">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="mb-0">Premium Plan</h2>
+      </div>
+      <div class="card-body">
+        <div class="price">
+          $4.99 <span class="price-period">/ month</span>
+        </div>
+        <p>Unlock all premium features and take your job search to the next level.</p>
+        
+        <div class="feature-list">
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span>Salary range estimation</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span>Advanced skills analysis</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span>Custom keyword highlighting</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span>Unlimited job analyses</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span>Priority support</span>
+          </div>
+        </div>
+        
+        <form id="checkout-form">
+          <div class="mb-3">
+            <label for="card-number" class="form-label">Card Number</label>
+            <input type="text" class="form-control" id="card-number" placeholder="4242 4242 4242 4242" value="4242 4242 4242 4242" readonly>
+            <div class="form-text">For demonstration purposes, we're using a test card number.</div>
+          </div>
+          
+          <div class="row mb-3">
+            <div class="col">
+              <label for="expiry-date" class="form-label">Expiry Date</label>
+              <input type="text" class="form-control" id="expiry-date" placeholder="MM/YY" value="12/25" readonly>
+            </div>
+            <div class="col">
+              <label for="cvc" class="form-label">CVC</label>
+              <input type="text" class="form-control" id="cvc" placeholder="123" value="123" readonly>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="name" class="form-label">Name on Card</label>
+            <input type="text" class="form-control" id="name" placeholder="John Doe" value="Test User" readonly>
+          </div>
+          
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary btn-premium">Upgrade to Premium</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <div class="text-center">
+      <a href="#" id="cancel-btn" class="btn btn-link">Cancel and return to extension</a>
+    </div>
+  </div>
+  
+  <div id="payment-success" class="payment-success">
+    <h2>Payment Successful!</h2>
+    <p>Thank you for upgrading to Premium. Your account has been upgraded and all premium features are now available.</p>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <a href="popup.html" class="btn btn-success">Return to Extension</a>
+    </div>
+  </div>
+
+  <script src="lib/bootstrap.bundle.min.js"></script>
+  <script src="payment.js"></script>
+</body>
+</html> 

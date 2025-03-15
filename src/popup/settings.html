@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://*.supabase.co; style-src 'self' 'unsafe-inline'; img-src 'self' data:;">
+  <title>Job Description Analyzer - Settings</title>
+  <link href="lib/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      width: 500px;
+      min-height: 400px;
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+    }
+    .logo h1 {
+      font-size: 20px;
+      margin: 0;
+      color: #4a6cf7;
+    }
+    .form-label {
+      font-weight: 500;
+    }
+    .form-text {
+      font-size: 12px;
+    }
+    .api-key-input {
+      font-family: monospace;
+    }
+    .nav-tabs {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <img src="../icons/icon48.svg" alt="Logo">
+    <h1>Job Description Analyzer - Settings</h1>
+  </div>
+
+  <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="api-tab" data-bs-toggle="tab" data-bs-target="#api-tab-pane" type="button" role="tab" aria-controls="api-tab-pane" aria-selected="true">API Keys</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="account-tab" data-bs-toggle="tab" data-bs-target="#account-tab-pane" type="button" role="tab" aria-controls="account-tab-pane" aria-selected="false">Account</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="preferences-tab" data-bs-toggle="tab" data-bs-target="#preferences-tab-pane" type="button" role="tab" aria-controls="preferences-tab-pane" aria-selected="false">Preferences</button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="settingsTabContent">
+    <!-- API Keys Tab -->
+    <div class="tab-pane fade show active" id="api-tab-pane" role="tabpanel" aria-labelledby="api-tab" tabindex="0">
+      <div class="mb-4">
+        <p>Configure your API keys to enable the extension's functionality.</p>
+      </div>
+
+      <form id="api-keys-form">
+        <!-- Gemini API Key -->
+        <div class="mb-3">
+          <label for="gemini-api-key" class="form-label">Gemini API Key</label>
+          <div class="input-group">
+            <input type="password" class="form-control api-key-input" id="gemini-api-key" placeholder="Enter your Gemini API key">
+            <button class="btn btn-outline-secondary" type="button" id="toggle-gemini-key">Show</button>
+          </div>
+          <div class="form-text">
+            Get your API key from <a href="https://ai.google.dev/" target="_blank">Google AI Studio</a>
+          </div>
+        </div>
+
+        <!-- Supabase URL -->
+        <div class="mb-3">
+          <label for="supabase-url" class="form-label">Supabase URL</label>
+          <input type="text" class="form-control api-key-input" id="supabase-url" placeholder="https://your-project.supabase.co">
+          <div class="form-text">
+            Your Supabase project URL
+          </div>
+        </div>
+
+        <!-- Supabase Anon Key -->
+        <div class="mb-3">
+          <label for="supabase-anon-key" class="form-label">Supabase Anon Key</label>
+          <div class="input-group">
+            <input type="password" class="form-control api-key-input" id="supabase-anon-key" placeholder="Enter your Supabase anon key">
+            <button class="btn btn-outline-secondary" type="button" id="toggle-supabase-key">Show</button>
+          </div>
+          <div class="form-text">
+            Your Supabase project's anon/public key
+          </div>
+        </div>
+
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary" id="save-api-keys">Save API Keys</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Account Tab -->
+    <div class="tab-pane fade" id="account-tab-pane" role="tabpanel" aria-labelledby="account-tab" tabindex="0">
+      <div id="account-logged-out" style="display: none;">
+        <!-- Login/Signup Tabs -->
+        <ul class="nav nav-tabs mb-3" id="auth-tabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-tab-pane" type="button" role="tab" aria-controls="login-tab-pane" aria-selected="true">Login</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup-tab-pane" type="button" role="tab" aria-controls="signup-tab-pane" aria-selected="false">Sign Up</button>
+          </li>
+        </ul>
+        
+        <!-- Login/Signup Tab Content -->
+        <div class="tab-content" id="auth-tabs-content">
+          <!-- Login Form -->
+          <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel" aria-labelledby="login-tab" tabindex="0">
+            <form id="login-form">
+              <div class="mb-3">
+                <label for="login-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="login-email" placeholder="Enter your email" required>
+              </div>
+              <div class="mb-3">
+                <label for="login-password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="login-password" placeholder="Enter your password" required>
+              </div>
+              <div id="login-error" class="alert alert-danger d-none" role="alert"></div>
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary" id="login-submit-btn">Log In</button>
+              </div>
+            </form>
+          </div>
+          
+          <!-- Signup Form -->
+          <div class="tab-pane fade" id="signup-tab-pane" role="tabpanel" aria-labelledby="signup-tab" tabindex="0">
+            <form id="signup-form">
+              <div class="mb-3">
+                <label for="signup-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="signup-email" placeholder="Enter your email" required>
+              </div>
+              <div class="mb-3">
+                <label for="signup-password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signup-password" placeholder="Enter your password" required>
+                <div class="form-text">Password must be at least 6 characters long</div>
+              </div>
+              <div class="mb-3">
+                <label for="signup-confirm-password" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="signup-confirm-password" placeholder="Confirm your password" required>
+              </div>
+              <div id="signup-error" class="alert alert-danger d-none" role="alert"></div>
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary" id="signup-submit-btn">Sign Up</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="account-logged-in" style="display: none;">
+        <div class="mb-3">
+          <h5>Account Information</h5>
+          <p>Email: <span id="account-email"></span></p>
+          <p>Subscription: <span id="account-subscription"></span></p>
+        </div>
+
+        <form id="profile-form" class="mb-4">
+          <div class="mb-3">
+            <label for="full-name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="full-name" placeholder="Enter your full name">
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary" id="save-profile">Save Profile</button>
+          </div>
+        </form>
+
+        <div class="mb-3">
+          <h5>Subscription Management</h5>
+          <div id="free-plan-section" style="display: none;">
+            <p>You are currently on the Free Plan.</p>
+            <button class="btn btn-warning" id="upgrade-btn">Upgrade to Premium</button>
+          </div>
+          <div id="premium-plan-section" style="display: none;">
+            <p>You are currently on the Premium Plan.</p>
+            <button class="btn btn-outline-secondary" id="manage-subscription-btn">Manage Subscription</button>
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 mt-4">
+          <button class="btn btn-outline-danger" id="settings-logout-btn">Log Out</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preferences Tab -->
+    <div class="tab-pane fade" id="preferences-tab-pane" role="tabpanel" aria-labelledby="preferences-tab" tabindex="0">
+      <form id="preferences-form">
+        <div class="mb-3">
+          <label class="form-label">Highlight Keywords</label>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="highlight-keywords" checked>
+            <label class="form-check-label" for="highlight-keywords">Highlight keywords in job descriptions</label>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Panel Position</label>
+          <select class="form-select" id="panel-position">
+            <option value="top-right">Top Right</option>
+            <option value="top-left">Top Left</option>
+            <option value="bottom-right">Bottom Right</option>
+            <option value="bottom-left">Bottom Left</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="theme-select" class="form-label">Theme</label>
+          <select class="form-select" id="theme-select">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="system">System Default</option>
+          </select>
+        </div>
+
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary" id="save-preferences">Save Preferences</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mt-4 text-center">
+    <a href="popup.html" class="btn btn-sm btn-outline-secondary">Back to Main</a>
+  </div>
+
+  <script src="lib/bootstrap.bundle.min.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html> 

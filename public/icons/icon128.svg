@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <rect width="128" height="128" rx="20" fill="url(#paint0_linear)"/>
+  
+  <!-- Document lines -->
+  <path d="M28 38H100" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  <path d="M28 64H80" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  <path d="M28 90H64" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Magnifying glass -->
+  <circle cx="90" cy="90" r="16" stroke="white" stroke-width="6"/>
+  <path d="M102 102L118 118" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Subtle highlights -->
+  <rect x="2" y="2" width="124" height="124" rx="18" stroke="white" stroke-opacity="0.2"/>
+  
+  <!-- Subtle inner shadow -->
+  <rect x="4" y="4" width="120" height="120" rx="16" fill="url(#paint1_radial)" fill-opacity="0.1"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="28" cy="38" r="3" fill="white" fill-opacity="0.6"/>
+  <circle cx="28" cy="64" r="3" fill="white" fill-opacity="0.6"/>
+  <circle cx="28" cy="90" r="3" fill="white" fill-opacity="0.6"/>
+  
+  <defs>
+    <!-- Main background gradient -->
+    <linearGradient id="paint0_linear" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5D7BF7"/>
+      <stop offset="1" stop-color="#4A6CF7"/>
+    </linearGradient>
+    
+    <!-- Inner shadow radial gradient -->
+    <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" 
+                    gradientTransform="translate(64 64) rotate(90) scale(80)">
+      <stop stop-color="white" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="black" stop-opacity="0.1"/>
+    </radialGradient>
+  </defs>
+</svg> 
