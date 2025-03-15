@@ -1,9 +1,8 @@
 import { GeminiRequest, GeminiResponse, JobAnalysis, KeywordCategory } from '../utils/types';
 import storageService from '../utils/storage';
 
-// This would be set in environment variables in a production app
-// For a Chrome extension, it can be stored in the extension's storage
-const GEMINI_API_KEY = 'AIzaSyASoMIdhab8J-93vce3i4nFzEo-VvfDjLs';
+// Ne jamais stocker de clés API directement dans le code source
+// Utiliser uniquement la clé stockée dans le stockage local de l'extension
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 class GeminiService {
@@ -36,10 +35,12 @@ class GeminiService {
   async analyzeJobDescription(jobText: string, isPremium: boolean = false): Promise<JobAnalysis> {
     try {
       // Vérifier si la clé API est configurée dans le stockage
-      const storedApiKey = await this.getApiKey();
+      const apiKey = await this.getApiKey();
       
-      // Utiliser la clé stockée ou la clé par défaut
-      const apiKey = storedApiKey || GEMINI_API_KEY;
+      // Vérifier si une clé API est disponible
+      if (!apiKey) {
+        throw new Error('API key is not configured. Please go to Settings and add your Gemini API key.');
+      }
       
       const prompt = this.createAnalysisPrompt(jobText, isPremium);
       const response = await this.callGeminiAPI(prompt, apiKey);
@@ -145,10 +146,10 @@ class GeminiService {
   /**
    * Call the Gemini API with a prompt
    * @param prompt The prompt text
-   * @param apiKey The Gemini API key (optional, will use default if not provided)
+   * @param apiKey The Gemini API key
    * @returns The API response
    */
-  private async callGeminiAPI(prompt: string, apiKey?: string): Promise<GeminiResponse> {
+  private async callGeminiAPI(prompt: string, apiKey: string): Promise<GeminiResponse> {
     const request: GeminiRequest = {
       contents: [
         {
@@ -167,10 +168,7 @@ class GeminiService {
       },
     };
 
-    // Use the provided API key or fall back to the default one
-    const keyToUse = apiKey || GEMINI_API_KEY;
-
-    const response = await fetch(`${GEMINI_API_URL}?key=${keyToUse}`, {
+    const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
